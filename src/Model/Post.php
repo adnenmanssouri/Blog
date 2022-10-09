@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Model;
 
 use App\Helpers\Text;
 use \DateTime;
 
 
-class Post {
+class Post
+{
 
     private $id;
 
@@ -17,34 +19,31 @@ class Post {
 
     private $categories = [];
 
-    public function getId (): ?int 
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName (): ?string 
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function getSlug (): ?string 
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function getExcerpt (): ?string
+    public function getExcerpt(): ?string
     {
-        if($this->content === null) {
+        if ($this->content === null) {
             return null;
         }
         return nl2br(htmlentities(Text::excerpt($this->content, 60)));
     }
-    
-    public function getCreatedAt (): DateTime 
+
+    public function getCreatedAt(): DateTime
     {
         return new DateTime($this->created_at);
     }
-
-    
-
 }

@@ -2,7 +2,8 @@
 
 namespace App;
 
-class Router {
+class Router
+{
 
     /**
      * @var string
@@ -28,7 +29,7 @@ class Router {
 
     public function url(string $name, array $params = [])
     {
-        return $this->router ->generate($name, $params);
+        return $this->router->generate($name, $params);
     }
 
     public function run(): self
