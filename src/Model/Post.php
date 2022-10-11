@@ -46,4 +46,9 @@ class Post
     {
         return new DateTime($this->created_at);
     }
+
+    public function getFormattedContent(): ?string
+    {
+        return nl2br(e($this->content));
+    }
 }
