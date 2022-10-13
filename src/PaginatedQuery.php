@@ -31,7 +31,6 @@ class PaginatedQuery
     {
         //This condition is to verify that this method has only been called once.
         if ($this->items === null) {
-            dump("je suis appelé");
             $currentPage = $this->getCurrentPage();
             $pages = $this->getPages();
             if ($currentPage > $pages) {
