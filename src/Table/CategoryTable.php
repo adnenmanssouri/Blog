@@ -3,6 +3,8 @@
 namespace App\Table;
 
 use App\Model\Category;
+use App\PaginatedQuery;
+use Exception;
 use PDO;
 
 final class CategoryTable extends Table
@@ -17,6 +19,7 @@ final class CategoryTable extends Table
     {
         $postsById = [];
         foreach ($posts as $post) {
+            $post->setCategories([]);
             $postsById[$post->getId()] = $post;
         }
         $categories =  $this->pdo
@@ -27,7 +30,22 @@ final class CategoryTable extends Table
             WHERE pc.post_id IN (" . implode(',', array_keys($postsById)) . ")"
             )->fetchAll(PDO::FETCH_CLASS, $this->class);
         foreach ($categories as $category) {
-            $postsById[$category->getPostId()]->setCategory($category);
+            $postsById[$category->getPostId()]->addCategory($category);
         }
+    }
+
+    public function all(): array
+    {
+        return $this->queryFeetchAll("SELECT * FROM {$this->table} ORDER BY id DESC");
+    }
+
+    public function list (): array
+    {
+        $categories = $this->queryFeetchAll("SELECT * FROM {$this->table} ORDER BY name ASC");
+        $results = [];
+        foreach($categories as $category) {
+            $results[$category->getId()] = $category->getName();
+        }
+        return $results;
     }
 }

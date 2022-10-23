@@ -15,6 +15,8 @@ class Post
 
     private $content;
 
+    private $slug;
+
     private $created_at;
 
     private $categories = [];
@@ -24,14 +26,47 @@ class Post
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    public function setName(string $name): self
+    {
+        $this->name =  $name;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content =  $content;
+        
+        return $this;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug =  $slug;
+        
+        return $this;
     }
 
     public function getExcerpt(): ?string
@@ -47,6 +82,13 @@ class Post
         return new DateTime($this->created_at);
     }
 
+    public function setCreatedAt(string $date): self
+    {
+        $this->created_at =  $date;
+        
+        return $this;
+    }
+
     public function getFormattedContent(): ?string
     {
         return nl2br(e($this->content));
@@ -60,7 +102,22 @@ class Post
         return $this->categories;
     }
 
-    public function setCategory(Category $category): void
+    public function getCategoriesIds(): array
+    {
+        $ids = [];
+        foreach($this->categories as $category) {
+            $ids[] = $category->getId();
+        }
+        return $ids;
+    }    
+
+    public function setCategories(array $categories): self
+    {
+        $this->categories = $categories;
+        return $this;
+    }
+
+    public function addCategory(Category $category): void
     {
         $this->categories[] = $category;
         $category->setPost($this); 
