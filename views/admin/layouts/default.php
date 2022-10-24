@@ -13,12 +13,12 @@
     <a href="#" class="navbar-brand">
       Mon site
     </a>
-    <ul class="navbar-brand">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="<?= $router->url('admin_posts'); ?>" class="navbar-brand">Articles</a>
+        <a href="<?= $router->url('admin_posts'); ?>" class="nav-link">Articles</a>
       </li>
       <li class="nav-item">
-        <a href="<?= $router->url('admin_categories'); ?>" class="navbar-brand">Catégories</a>
+        <a href="<?= $router->url('admin_categories'); ?>" class="nav-link">Catégories</a>
       </li>
       <li class="nav-item">
         <form action="<?= $router->url('logout') ?>" method="post" style="display:inline">

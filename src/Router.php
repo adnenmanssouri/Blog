@@ -50,8 +50,12 @@ class Router
     public function run(): self
     {
         $match = $this->router->match();
-        $view = $match['target'] ?: 'e404';
-        $params = $match['params'];
+        if(isset($match['target'])) {
+            $view = $match['target'];
+            $params = $match['params'];
+        } else {
+            $view = 'e404';
+        }
         $router = $this;
         $isAdmin = strpos($view, 'admin') !== false;
         $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';

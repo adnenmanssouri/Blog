@@ -16,9 +16,7 @@ if (!empty($_POST)) {
         $table = new UserTable(Connection::getPdo());
     try {
         $u = $table->findByUsername($_POST['username']);
-        $u->getPassword();
-        $_POST['password'];
-        if(password_verify($u->getPassword(), $_POST['password']) === true) {
+        if(password_verify($_POST['password'], $u->getPassword()) === true) {
             session_start();
             $_SESSION['auth'] = $u->getId();
             header('Location: ' . $router->url('admin_posts'));
