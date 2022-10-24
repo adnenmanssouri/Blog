@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title><?= isset($title) ? e($title) : 'Mon Site' ?></title>
 </head>
 
@@ -14,10 +14,19 @@
       Mon site
     </a>
     <ul class="navbar-brand">
+      <li class="nav-item">
         <a href="<?= $router->url('admin_posts'); ?>" class="navbar-brand">Articles</a>
+      </li>
+      <li class="nav-item">
         <a href="<?= $router->url('admin_categories'); ?>" class="navbar-brand">Catégories</a>
+      </li>
+      <li class="nav-item">
+        <form action="<?= $router->url('logout') ?>" method="post" style="display:inline">
+          <button type="submit" class="nav-link" style="background:transparent; border:none">Se déconnecter</button>  
+        </form>
+      </li>
     </ul>
-    
+
   </nav>
 
   <div class="container mt-4">
